@@ -11,7 +11,7 @@ pipeline {
         }
         stage("build and test"){
             steps{
-                sh "docker build -t node-app-test-new ."
+                sh "docker build -t devopsproject ."
                 echo 'code build successful'
             }
         }
@@ -24,8 +24,8 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
                 sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                sh "docker tag node-app-test-new:latest ${env.dockerHubUser}/node-app-test-new:latest"
-                sh "docker push ${env.dockerHubUser}/node-app-test-new:latest"
+                sh "docker tag devopsproject:latest ${env.dockerHubUser}/devopsproject:latest"
+                sh "docker push ${env.dockerHubUser}/devopsproject:latest"
                 echo 'image pushed'
                 }
             }
