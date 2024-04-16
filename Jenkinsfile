@@ -30,17 +30,12 @@ pipeline {
                 }
             }
         }
-        stage("deploy"){
-    steps{
-        script {
-            // Stop and remove the existing container if it exists
-            sh "docker stop docker || true" // Stop the container named 'docker', ignore error if container does not exist
-            sh "docker rm docker || true" // Remove the container named 'docker', ignore error if container does not exist
+         stage("deploy"){
+            steps{
+                sh "docker-compose down && docker-compose up -d"
+                echo 'deployment completed'
+            }
 
-            // Now run the new container
-            sh "docker run -d --name docker -p 8000:8000 devopsproject2"
-            echo 'deployment done'
-        }
     }
 }
 
