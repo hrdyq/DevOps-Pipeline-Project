@@ -32,7 +32,7 @@ pipeline {
         }
         stage("deploy"){
             steps{
-                sh "docker-compose down && docker-compose up -d"
+                sh "docker-compose down --remove-orphans && docker-compose up -d"
                 echo 'deployment done'
             }
         }
