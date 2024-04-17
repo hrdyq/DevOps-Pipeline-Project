@@ -33,7 +33,7 @@ pipeline {
          stage("deploy"){
             steps{
                 sh "docker rm -f docker"
-                sh "docker run -d -p 80:80 --name docker devopsproject:latest"
+                sh "docker run -d -p 8000:8000 --name docker devopsproject:latest"
                 echo 'deployment completed'
             }
 		}
