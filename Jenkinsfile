@@ -32,7 +32,8 @@ pipeline {
         }
          stage("deploy"){
             steps{
-                sh "docker-compose down && docker-compose up -d"
+                sh "docker rm -f docker"
+                sh "docker run -d -p 80:80 --name docker devopsproject:latest"
                 echo 'deployment completed'
             }
     }
