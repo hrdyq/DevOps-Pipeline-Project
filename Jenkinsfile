@@ -20,16 +20,16 @@ pipeline {
                 echo 'image scanning complete'
             }
         }
-        stage("push"){
-            steps{
-                withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
-                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                sh "docker tag devopsproject:latest ${env.dockerHubUser}/devopsproject:latest"
-                sh "docker push ${env.dockerHubUser}/devopsproject:latest"
-                echo 'image pushed'
-                }
-            }
-        }
+        // stage("push"){
+        //     steps{
+        //         withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
+        //         sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+        //         sh "docker tag devopsproject:latest ${env.dockerHubUser}/devopsproject:latest"
+        //         sh "docker push ${env.dockerHubUser}/devopsproject:latest"
+        //         echo 'image pushed'
+        //         }
+        //     }
+        // }
          stage("deploy"){
             steps{
                 sh "docker rm -f docker"
