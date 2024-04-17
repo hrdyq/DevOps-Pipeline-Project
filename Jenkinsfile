@@ -25,7 +25,8 @@ pipeline {
                 sh "docker rm -f docker"
                 sh "docker run -d -p 8000:8000 --name docker devopsproject:latest"
                 echo 'deployment completed'
-            }
-		}
-	}   
+            	}
+	}
+	stage("")
+       }   
 }
