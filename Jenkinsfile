@@ -19,8 +19,7 @@ pipeline {
             steps{
                 echo 'image scanning complete'
             }
-        }
-        
+        } 
          stage("deploy"){
             steps{
                 sh "docker rm -f docker"
