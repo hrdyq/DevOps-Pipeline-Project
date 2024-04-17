@@ -36,9 +36,6 @@ pipeline {
                 sh "docker run -d -p 80:80 --name docker devopsproject:latest"
                 echo 'deployment completed'
             }
-    }
-}
-
-        }
-    }
+		}
+	}   
 }
