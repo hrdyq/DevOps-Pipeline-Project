@@ -27,6 +27,5 @@ pipeline {
                 echo 'deployment completed'
             	}
 	}
-	stage("")
        }   
 }
