@@ -1,111 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Events List</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                color: #333;
-                margin: 0;
-                padding: 0;
-            }
-
-            h1 {
-                background-color: #4CAF50;
-                color: white;
-                margin: 0;
-                padding: 20px;
-                text-align: center;
-            }
-
-            ul {
-                list-style: none;
-                padding: 0;
-            }
-
-            ul li {
-                background: #fff;
-                border: 1px solid #ddd;
-                margin-bottom: 10px;
-                padding: 10px;
-                position: relative;
-            }
-
-            ul li a {
-                color: #333;
-                text-decoration: none;
-                font-weight: bold;
-            }
-
-            ul li a:hover {
-                color: #4CAF50;
-            }
-
-            .delete-btn {
-                color: red;
-                position: absolute;
-                right: 10px;
-                top: 10px;
-            }
-
-            .edit-btn {
-                color: #FFC107;
-                position: absolute;
-                right: 40px;
-                top: 10px;
-            }
-
-            form {
-                background: #fff;
-                padding: 20px;
-                margin-top: 20px;
-            }
-
-            label {
-                display: block;
-                margin-bottom: 10px;
-            }
-
-            input[type="text"] {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 10px;
-                border: 1px solid #ddd;
-            }
-
-            input[type="submit"] {
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                cursor: pointer;
-            }
-
-            input[type="submit"]:hover {
-                background-color: #45a049;
-            }
-        </style>
-    </head>
-
-    <body>
-        <h1>Todo List - Made for Batch 6</h1>
-        <ul>
-            <% todolist.forEach(function(todo, index) { %>
-            <li>
-                <a href="/todo/delete/<%= index %>" class="delete-btn">✘</a>
-                <a href="/todo/<%= index %>" class="edit-btn">✎</a>
-                <%- todo %>
-            </li>
-            <% }); %>
-        </ul>
-
-        <form action="/todo/add/" method="post">
-            <p>
-                <label for="newtodo">What should I do?</label>
-                <input type="text" name="newtodo" id="newtodo" autofocus />
-                <input type="submit" value="Add" />
-            </p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Event Management System</title>
+    
+    <style>
+                body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        #registerForm {
+            display: none;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: #212121;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+        
+        h1, h2 {
+            color: #ffffff;
+        }
+        
+        #events, #registrationResult {
+            margin-top: 20px;
+        }
+        
+        input[type="text"], input[type="email"] {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: calc(100% - 24px);
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #b12121;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #711515;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CAMPUS EVENT MANAGEMENT SYSTEM</h1>
+        <button id="eventButton">Show Events</button>
+        <div id="events"></div>
+        <button id="registerButton">Register</button> <!-- Register button to show the form -->
+        <form id="registerForm" style="display: none;"> <!-- Initially hide the form -->
+            <h2>Register for an Event</h2>
+            <input type="text" id="name" placeholder="Your Name" required color=" gray">
+            <input type="email" id="email" placeholder="Your Email" required style="color: gray;">
+            <button type="submit">Submit</button>
         </form>
-    </body>
+        <div id="registrationResult"></div>
+    </div>
+    <script>
+            document.getElementById('eventButton').addEventListener('click', function() {
+            document.getElementById('events').innerHTML = '<p style="color:white">EVENT 1<br />Campus Marathon</p><p style="color: white">EVENT 2<br />Tech Talk</p>';
+        });
+        
+        // Listen for clicks on the "Register" button to show the form
+        document.getElementById('registerButton').addEventListener('click', function() {
+            document.getElementById('registerForm').style.display = 'block'; // Show the form
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the actual form submission
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            document.getElementById('registrationResult').innerHTML = `<p style="color:white">Thank you, ${name}, for registering! A confirmation email has been sent to ${email}.</p>`;
+            document.getElementById('registerForm').reset(); // Reset form fields
+            document.getElementById('registerForm').style.display = 'none'; // Optionally hide the form again after submission
+        });
+    </script>
+</body>
 </html>
+
