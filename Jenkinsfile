@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages {
-        
+
         stage("code"){
             steps{
                 git url: "https://github.com/hrdyq/DevOps-Pipeline-Project.git", branch: "master"
